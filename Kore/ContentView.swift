@@ -9,24 +9,31 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TabView {
-            Text("Dashboard")
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Dashboard")
+        NavigationView() {
+            TabView {
+                Text("Dashboard")
+                    .tabItem {
+                        Image(systemName: "house")
+                        Text("Dashboard")
+                    }
+                Text("Start")
+                    .tabItem {
+                        Image(systemName: "bolt.heart")
+                        Text("Start")
+                    }
+                List(1...10, id: \.self) { index in
+                    NavigationLink(
+                        destination: Text("Workout #\(index) Details"), label: {
+                            Text("Workout #\(index)").font(.system(size: 20, weight: .bold, design: .rounded))
+                        })
                 }
-            Text("Start")
-                .tabItem {
-                    Image(systemName: "bolt.heart")
-                    Text("Start")
-                }
-            Text("Browse")
-                .tabItem {
-                    Image(systemName: "list.dash")
-                    Text("Browse")
-                }
+                    .tabItem {
+                        Image(systemName: "list.dash")
+                        Text("Browse")
+                    }
+            }
+            .font(.headline)
         }
-        .font(.headline)
     }
 }
 
